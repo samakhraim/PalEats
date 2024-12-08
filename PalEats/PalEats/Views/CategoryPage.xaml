@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PalEats.ViewModels"
+             x:Class="PalEats.Views.CategoryPage"              
+             xmlns:components="clr-namespace:PalEats.Views"
+             xmlns:c="clr-namespace:PalEats.Views"
+             Title="PalEats" >
+
+    <FlyoutPage.Flyout>
+        <c:FlyoutMenuPage x:Name="flyout"/>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage>
+                    <ContentPage.ToolbarItems>
+                        <ToolbarItem Text="PalEats"  Order="Default" Priority="1" />
+                    </ContentPage.ToolbarItems>
+                    <ContentPage.BindingContext>
+                        
+                        <local:CategoryPageViewModel/>
+                    </ContentPage.BindingContext>
+                    <ContentPage.Content>
+                        <StackLayout BackgroundColor="{StaticResource backgroundColor }">
+                            <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                                <BoxView HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="1" WidthRequest="40" Color="{StaticResource MainTextColor}"/>
+                                <Label Text="Discover &#x0a;Palestinian Recipes" FontSize="Title" TextColor="{StaticResource MainTextColor}" FontAttributes="Bold"/>
+                                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1"  Color="{StaticResource MainTextColor}"/>
+                            </StackLayout>
+                            <StackLayout Padding="15">
+
+                                <CollectionView ItemsSource="{Binding Categories}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame IsClippedToBounds="True" Padding="0" HeightRequest="270" CornerRadius="20">
+                                                <RelativeLayout>
+                                                    <Image Source="{Binding ImgUrl}" 
+                                                           Aspect="AspectFill"
+                                                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"/>
+
+                                                    <Frame BackgroundColor="#907A68"
+                                                           Opacity="0.4"
+                                                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
+
+                                                    <Label Padding="5" Text="{Binding CategoryName}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="EndAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
+
+
+                                                </RelativeLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                            <StackLayout  VerticalOptions="EndAndExpand">
+                                <components:NavigationComponent/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentPage.Content>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:PalEats.Views"
+             x:Class="PalEats.Views.SearchPage"  
+                          NavigationPage.HasNavigationBar="False"               
+             xmlns:local="clr-namespace:PalEats.ViewModels">
+    <ContentPage.BindingContext>
+        <local:SearchPageViewModel/>
+    </ContentPage.BindingContext>
+   
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource backgroundColor}">
+            <StackLayout>
+                <SearchBar Placeholder="Search"
+                       Text="{Binding SearchText}"
+                     
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding SearchText}"/>
+
+                <CollectionView ItemsSource="{Binding SearchResult}" SelectionMode="Single" Margin="20" SelectionChanged="OnCollectionViewSelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame IsClippedToBounds="True" Padding="0" HeightRequest="250" CornerRadius="20">
+                                <RelativeLayout>
+                                    <Image Source="{Binding DishImgUrl}" 
+                                   Aspect="AspectFill"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                                   
+                                   />
+
+                                    <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                                      >
+                                        <Frame HeightRequest="60" VerticalOptions="End" BackgroundColor="#F9EFE3" Opacity="0.6" CornerRadius="20">
+                                            <Label Text="{Binding DishName}" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" TextColor="#543214" FontSize="Medium"/>
+                                        </Frame>
+                                    </Grid>
+
+                                </RelativeLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <components:NavigationComponent/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

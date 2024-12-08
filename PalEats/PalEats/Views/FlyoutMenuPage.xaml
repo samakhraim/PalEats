@@ -1,0 +1,44 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PalEats.Views.FlyoutMenuPage"
+             xmlns:local="clr-namespace:PalEats.Views"
+             Title="FlyoutMenu"
+             xmlns:m="clr-namespace:PalEats.Models">
+
+    <StackLayout Padding="10" BackgroundColor="{StaticResource backgroundColor }">
+        <Frame BackgroundColor="Transparent" HorizontalOptions="Center"  >
+            <Image Source="profile.png" HeightRequest="150"  />
+        </Frame>
+
+        <Label x:Name="loginStatusLabel"  TextColor="{StaticResource MainTextColor}" FontSize="18"  HorizontalOptions="Center" Margin="0,-30,0,30"/>
+
+        <ListView x:Name="listview" x:FieldModifier="Public">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type m:FlyoutMenuItem}">
+                    <m:FlyoutMenuItem Title="Shopping List" IconSource="shoppinglist.png" TargetPage="{x:Type local:ShoppingListPage}"/>
+                    <m:FlyoutMenuItem Title="Log Out" IconSource="logout.png" TargetPage="{x:Type local:SignInPage}"/>
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding IconSource}" WidthRequest="30" HeightRequest="45" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,50,0"/>
+                            <Label Text="{Binding Title}" FontSize="18" TextColor="{StaticResource MainTextColor}" VerticalOptions="Center" HorizontalOptions="Start" Margin="40,0,0,0"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <StackLayout VerticalOptions="EndAndExpand">
+            <Label TextColor="{StaticResource MainTextColor}" Text="Contact Us" FontSize="Caption" FontAttributes="Bold" Margin="10,5"/>
+            <Label TextColor="{StaticResource MainTextColor}" Text="info.paleats@gmail.com" FontSize="Caption" FontAttributes="Bold" Margin="10,5"/>
+            <Label TextColor="{StaticResource MainTextColor}" Text="© 2023 PalEats Inc." FontSize="Caption" Margin="10,5"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

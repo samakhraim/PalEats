@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PalEats.App">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="backgroundColor">#FFF4EC</Color>
+            <Color x:Key="MainHeadandNavbarColor">#FBD6BC</Color>
+            <Color x:Key="MainTextColor">#543214</Color>
+            <Color x:Key="RecipeHeaderColor">#F9EFE3</Color>
+            <Color x:Key="RecipePanelBackground">#F2F2F2</Color>
+            <Color x:Key="IngredientIconBackground">#F9EFE3</Color>
+            <Color x:Key="CatagorySelectionCardColor">#F9EFE3</Color>
+            <Color x:Key="ClickedNavbarButtonBackground">#E7C1C1</Color>
+            <Color x:Key="FrameBackgroundColor">#EFDECF</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#FBD6BC" />
+            </Style>
+
+           
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

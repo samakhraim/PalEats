@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PalEats.Views.SubcategoryPage"
+             xmlns:components="clr-namespace:PalEats.Views">
+    
+    <NavigationPage.TitleView>
+        <Label  Text="{Binding CategoryName}"  FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource backgroundColor }">
+           
+
+            <StackLayout Padding="15" Margin="0,30,0,0">
+
+                <CollectionView ItemsSource="{Binding Dishes}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame IsClippedToBounds="True" Padding="0" HeightRequest="180" CornerRadius="20">
+                                <RelativeLayout>
+                                    <Image Source="{Binding DishImgUrl}" 
+                                   Aspect="AspectFill"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                                   
+                                   />
+                                    <Frame BackgroundColor="#907A68" Opacity="0.4" CornerRadius="20" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
+                                    <Label   Padding="6"  Text="{Binding DishName}"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="EndAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
+
+
+                                </RelativeLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <components:NavigationComponent/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

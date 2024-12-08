@@ -1,0 +1,38 @@
+﻿<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="PalEats.Views.ShoppingListModal">
+    <Grid  Padding="40" Margin="0,50,0,0">
+        
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource backgroundColor}">
+            <Label Padding="30,30,30,0"  FontSize="Medium" TextColor="{StaticResource MainTextColor}" Text="Add To Your Shopping List : " HorizontalOptions="Center"/>
+            <CollectionView ItemsSource="{Binding Ingredients}" Margin="20,20,0,0"  HeightRequest="{Binding IngredientsHeight}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowSpacing="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}"/>
+                            <Label Grid.Column="1" Text="{Binding Amount}" Padding="0,5,0,0" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                            <Label Grid.Column="2" Text="{Binding Unit}" Padding="0,5,0,0" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                            <Label Grid.Column="3" Text="{Binding Name}" Padding="0,5,0,0" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                <Button TextColor="{StaticResource MainTextColor}" Text="Save" Margin="20" Command="{Binding SaveCommand}"></Button>
+                <Button TextColor="{StaticResource MainTextColor}" Text="cancel" Margin="20" Clicked="CloseButtonClicked"></Button>
+            </StackLayout>
+       
+    </StackLayout>
+    </Grid>
+</popup:PopupPage>
+
